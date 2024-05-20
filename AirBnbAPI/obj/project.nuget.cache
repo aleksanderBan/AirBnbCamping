@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "7P9dvxmg555vjsUZBKjTrT5FWnm0ZG6hH4LwH2T+1CQUQ5rrxXC4KgZoqEa/1BmghbSUKqYcS/aqDA+dkhaQGQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\banas\\Desktop\\TM\\Year2\\Web\\AirBnb\\AirBnbAPI\\AirBnbAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\banas\\.nuget\\packages\\litedb\\5.0.19\\litedb.5.0.19.nupkg.sha512",
+    "C:\\Users\\banas\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\banas\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\banas\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\banas\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\banas\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\banas\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
