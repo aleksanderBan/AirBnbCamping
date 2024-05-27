@@ -16,5 +16,30 @@ namespace AirBnbAPI.Data
         {
             return db.GetCollection<Booking>("Bookings").FindAll();
         }
+
+        public void AddSpot(Spot spot)
+        {
+            db.GetCollection<Spot>("Spots").Insert(spot);
+        }
+
+        public IEnumerable<Spot> GetSpots()
+        {
+            return db.GetCollection<Spot>("Spots").FindAll();
+        }
+
+        public void AddUser(User user)
+        {
+            db.GetCollection<User>("Users").Insert(user);
+        }
+
+        public IEnumerable<User> GetUsers()
+        {
+            return db.GetCollection<User>("Users").FindAll();
+        }
+
+        //public void UpdateUser(User user)
+        //{
+        //    db.GetCollection<User>("Users").Update(user);
+        //}
     }
 }
