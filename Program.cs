@@ -15,6 +15,17 @@ namespace AirBnbAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            // Add CORS policy
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowLocalhost8080", builder =>
+                {
+                    builder.WithOrigins("http://localhost:8080")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+            });
+
             builder.Services.AddSingleton(typeof(IAnonymousAirBnbDataContext), typeof(AnonymousAirBnbDatabase));
 
 
@@ -31,6 +42,8 @@ namespace AirBnbAPI
 
             app.UseAuthorization();
 
+            // Enable CORS
+            app.UseCors("AllowLocalhost8080");
 
             app.MapControllers();
 
