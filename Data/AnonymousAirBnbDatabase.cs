@@ -1,5 +1,6 @@
 ﻿using AirBnbAPI.Models;
 using LiteDB;
+using System.Collections.Generic;
 
 namespace AirBnbAPI.Data
 {
@@ -27,6 +28,14 @@ namespace AirBnbAPI.Data
             return db.GetCollection<Spot>("Spots").FindAll();
         }
 
+        public void DeleteSpot(int id)
+        {
+            if (!db.GetCollection<Spot>("Spots").Delete(id))
+            {
+                throw new KeyNotFoundException($"Spot with ID {id} does not exist.");
+            }
+        }
+
         public void AddUser(User user)
         {
             db.GetCollection<User>("Users").Insert(user);
@@ -37,9 +46,25 @@ namespace AirBnbAPI.Data
             return db.GetCollection<User>("Users").FindAll();
         }
 
-        //public void UpdateUser(User user)
-        //{
-        //    db.GetCollection<User>("Users").Update(user);
-        //}
+        public void UpdateUser(User user)
+        {
+            db.GetCollection<User>("Users").Update(user);
+        }
+
+        public void DeleteBooking(int id)
+        {
+            if (!db.GetCollection<Booking>("Bookings").Delete(id))
+            {
+                throw new KeyNotFoundException($"Booking with ID {id} does not exist.");
+            }
+        }
+
+        public void DeleteUser(int id)
+        {
+            if (!db.GetCollection<User>("Users").Delete(id))
+            {
+                throw new KeyNotFoundException($"User with ID {id} does not exist.");
+            }
+        }
     }
 }

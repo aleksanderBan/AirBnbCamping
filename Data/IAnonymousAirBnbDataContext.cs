@@ -12,6 +12,9 @@ namespace AirBnbAPI.Data
 
         void AddUser(User user);
         IEnumerable<User> GetUsers();
+        void DeleteUser(int id);
+        void DeleteSpot(int id);
+        void DeleteBooking(int id);
 
         //void UpdateUser(User user);
     }

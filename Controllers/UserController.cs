@@ -1,6 +1,8 @@
 ﻿using AirBnbAPI.Data;
 using AirBnbAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace AirBnbAPI.Controllers
 {
@@ -8,8 +10,6 @@ namespace AirBnbAPI.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        //private IAnonymousAirBnbDataContext _data;
-
         private readonly IAnonymousAirBnbDataContext _data;
 
         public UserController(IAnonymousAirBnbDataContext data)
@@ -36,25 +36,24 @@ namespace AirBnbAPI.Controllers
             return Ok("User registered");
         }
 
-        //[HttpPut("update")]
-        //public ActionResult Update([FromBody] User user)
-        //{
-        //    var existingUser = _data.GetUsers().FirstOrDefault(u => u.Id == user.Id);
-        //    if (existingUser == null)
-        //    {
-        //        return NotFound("User not found");
-        //    }
-        //    existingUser.UserName = user.UserName;
-        //    // Update other fields as necessary
-        //    _data.UpdateUser(existingUser);
-        //    return Ok("User updated");
-
-        //}
-
         [HttpGet("users")]
         public ActionResult<IEnumerable<User>> GetUsers()
         {
             return Ok(_data.GetUsers());
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                _data.DeleteUser(id);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            return Ok("User deleted");
         }
     }
 }

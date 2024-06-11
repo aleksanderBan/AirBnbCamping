@@ -1,6 +1,8 @@
 using AirBnbAPI.Data;
 using AirBnbAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AirBnbAPI.Controllers
 {
@@ -16,7 +18,7 @@ namespace AirBnbAPI.Controllers
         }
 
         [HttpGet(Name = "GetBooking")]
-        public ActionResult <IEnumerable<Booking>> Get()
+        public ActionResult<IEnumerable<Booking>> Get()
         {
             return Ok(_data.GetBookings());
         }
@@ -31,14 +33,6 @@ namespace AirBnbAPI.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] Booking booking)
         {
-            //// Assuming userId is passed in the booking request body
-            //if (booking.UserId == 1)
-            //{
-            //    return BadRequest("UserId is required");
-            //}
-
-            //_data.AddBooking(booking);
-            //return Ok("Booking created");
             // Check if the userId exists
             var existingUser = _data.GetUsers().FirstOrDefault(u => u.Id == booking.UserId);
             if (existingUser == null)
@@ -55,6 +49,20 @@ namespace AirBnbAPI.Controllers
 
             _data.AddBooking(booking);
             return Ok("Booking created");
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                _data.DeleteBooking(id);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            return Ok("Booking deleted");
         }
     }
 }
