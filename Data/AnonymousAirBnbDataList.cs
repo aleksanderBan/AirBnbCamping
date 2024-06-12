@@ -77,5 +77,24 @@ namespace AirBnbAPI.Data
             }
             users.Remove(user);
         }
+
+        //Admin shit
+
+        public bool ValidatePassword(string password)
+        {
+            // Implement your logic to validate the admin password here
+            // For simplicity, let's assume the password is hardcoded
+            return password == "adminpassword";
+        }
+
+        public IEnumerable<Spot> GetAllSpots()
+        {
+            return spots;
+        }
+
+        public void CreateSpot(Spot spot)
+        {
+            spots.Add(spot);
+        }
     }
 }

@@ -66,5 +66,24 @@ namespace AirBnbAPI.Data
                 throw new KeyNotFoundException($"User with ID {id} does not exist.");
             }
         }
+
+        //Admin shit
+
+        public bool ValidatePassword(string password)
+        {
+            // Implement your logic to validate the admin password here
+            // For simplicity, let's assume the password is hardcoded
+            return password == "adminpassword";
+        }
+
+        public IEnumerable<Spot> GetAllSpots()
+        {
+            return db.GetCollection<Spot>("Spots").FindAll();
+        }
+
+        public void CreateSpot(Spot spot)
+        {
+            db.GetCollection<Spot>("Spots").Insert(spot);
+        }
     }
 }

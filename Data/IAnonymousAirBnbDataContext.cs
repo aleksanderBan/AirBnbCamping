@@ -17,5 +17,9 @@ namespace AirBnbAPI.Data
         void DeleteBooking(int id);
 
         //void UpdateUser(User user);
+
+        bool ValidatePassword(string password);
+        IEnumerable<Spot> GetAllSpots();
+        void CreateSpot(Spot spot);
     }
 }
