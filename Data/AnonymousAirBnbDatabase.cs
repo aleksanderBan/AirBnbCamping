@@ -28,6 +28,16 @@ namespace AirBnbAPI.Data
             return db.GetCollection<Spot>("Spots").FindAll();
         }
 
+        public Spot GetSpotById(int id)
+        {
+            return db.GetCollection<Spot>("Spots").FindById(id);
+        }
+
+        public void UpdateSpot(Spot spot)
+        {
+            db.GetCollection<Spot>("Spots").Update(spot);
+        }
+
         public void DeleteSpot(int id)
         {
             if (!db.GetCollection<Spot>("Spots").Delete(id))

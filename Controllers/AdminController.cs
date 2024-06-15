@@ -40,4 +40,35 @@ public class AdminController : ControllerBase
         _data.AddSpot(spot);
         return Ok("Spot created successfully");
     }
+
+    [HttpGet("spots/{id}")]
+    public ActionResult<Spot> GetSpotById(int id)
+    {
+        var spot = _data.GetSpotById(id);
+        if (spot == null)
+        {
+            return NotFound("Spot not found");
+        }
+        return Ok(spot);
+    }
+
+    [HttpPost("spots/{id}/availability")]
+    public ActionResult UpdateSpotAvailability(int id, [FromBody] AvailabilityUpdateRequest request)
+    {
+        var spot = _data.GetSpotById(id);
+        if (spot == null)
+        {
+            return NotFound("Spot not found");
+        }
+
+        spot.IsAvailable = request.IsAvailable;
+        _data.UpdateSpot(spot);
+
+        return Ok("Spot availability updated successfully");
+    }
+
+    public class AvailabilityUpdateRequest
+    {
+        public bool IsAvailable { get; set; }
+    }
 }

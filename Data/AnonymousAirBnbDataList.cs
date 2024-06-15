@@ -29,6 +29,20 @@ namespace AirBnbAPI.Data
             return spots;
         }
 
+        public Spot GetSpotById(int id)
+        {
+            return spots.FirstOrDefault(s => s.Id == id);
+        }
+
+        public void UpdateSpot(Spot spot)
+        {
+            var index = spots.FindIndex(s => s.Id == spot.Id);
+            if (index != -1)
+            {
+                spots[index] = spot;
+            }
+        }
+
         public void DeleteSpot(int id)
         {
             var spot = spots.FirstOrDefault(s => s.Id == id);
