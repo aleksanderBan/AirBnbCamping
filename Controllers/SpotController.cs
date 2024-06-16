@@ -18,23 +18,13 @@ namespace AirBnbAPI.Controllers
         }
 
         [HttpGet(Name = "GetSpots")]
-        public ActionResult<IEnumerable<Spot>> Get([FromQuery] string name = null, [FromQuery] string location = null, [FromQuery] bool? isAvailable = null)
+        public ActionResult<IEnumerable<Spot>> Get([FromQuery] string location = null)
         {
             var spots = _data.GetSpots();
-
-            if (!string.IsNullOrEmpty(name))
-            {
-                spots = spots.Where(s => s.Name.Contains(name, System.StringComparison.InvariantCultureIgnoreCase));
-            }
 
             if (!string.IsNullOrEmpty(location))
             {
                 spots = spots.Where(s => s.Location.Contains(location, System.StringComparison.InvariantCultureIgnoreCase));
-            }
-
-            if (isAvailable.HasValue)
-            {
-                spots = spots.Where(s => s.IsAvailable == isAvailable.Value);
             }
 
             return Ok(spots);
@@ -53,12 +43,12 @@ namespace AirBnbAPI.Controllers
             try
             {
                 _data.DeleteSpot(id);
+                return Ok("Spot deleted");
             }
             catch (KeyNotFoundException ex)
             {
                 return NotFound(ex.Message);
             }
-            return Ok("Spot deleted");
         }
     }
 }
