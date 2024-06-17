@@ -33,14 +33,12 @@ namespace AirBnbAPI.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] Booking booking)
         {
-            // Check if the userId exists
             var existingUser = _data.GetUsers().FirstOrDefault(u => u.Id == booking.UserId);
             if (existingUser == null)
             {
                 return BadRequest("UserId does not exist");
             }
 
-            // Check if the spotId exists
             var existingSpot = _data.GetSpots().FirstOrDefault(s => s.Id == booking.SpotId);
             if (existingSpot == null)
             {

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 public class AdminController : ControllerBase
 {
     private readonly IAnonymousAirBnbDataContext _data;
-    private readonly string adminPassword = "adminpassword"; // Hardcoded admin password
+    private readonly string adminPassword = "adminpassword";
 
     public AdminController(IAnonymousAirBnbDataContext data)
     {

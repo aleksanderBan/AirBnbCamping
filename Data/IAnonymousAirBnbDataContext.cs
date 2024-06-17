@@ -9,6 +9,7 @@ namespace AirBnbAPI.Data
         IEnumerable<Booking> GetBookings();
         void DeleteBooking(int id);
 
+
         //Spot
         void AddSpot(Spot spot);
         IEnumerable<Spot> GetSpots();
@@ -16,10 +17,12 @@ namespace AirBnbAPI.Data
         Spot GetSpotById(int id);
         void UpdateSpot(Spot spot);
 
+
         //User
         void AddUser(User user);
         IEnumerable<User> GetUsers();
         void DeleteUser(int id);
+
 
         //Admin
         bool ValidatePassword(string password);

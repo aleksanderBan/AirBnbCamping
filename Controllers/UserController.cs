@@ -25,7 +25,6 @@ namespace AirBnbAPI.Controllers
             {
                 return NotFound("User not found");
             }
-            // Here you should check the password, but for simplicity, we skip this step
             if (existingUser.Password != user.Password)
             {
                 return BadRequest("Invalid password");

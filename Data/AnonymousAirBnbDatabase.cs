@@ -8,6 +8,8 @@ namespace AirBnbAPI.Data
     {
         LiteDatabase db = new LiteDatabase(@"data.db");
 
+
+        //Booking things
         public void AddBooking(Booking booking)
         {
             db.GetCollection<Booking>("Bookings").Insert(booking);
@@ -18,6 +20,16 @@ namespace AirBnbAPI.Data
             return db.GetCollection<Booking>("Bookings").FindAll();
         }
 
+        public void DeleteBooking(int id)
+        {
+            if (!db.GetCollection<Booking>("Bookings").Delete(id))
+            {
+                throw new KeyNotFoundException($"Booking with ID {id} does not exist.");
+            }
+        }
+
+
+        //Spot things
         public void AddSpot(Spot spot)
         {
             db.GetCollection<Spot>("Spots").Insert(spot);
@@ -46,6 +58,8 @@ namespace AirBnbAPI.Data
             }
         }
 
+
+        //User things
         public void AddUser(User user)
         {
             db.GetCollection<User>("Users").Insert(user);
@@ -61,14 +75,6 @@ namespace AirBnbAPI.Data
             db.GetCollection<User>("Users").Update(user);
         }
 
-        public void DeleteBooking(int id)
-        {
-            if (!db.GetCollection<Booking>("Bookings").Delete(id))
-            {
-                throw new KeyNotFoundException($"Booking with ID {id} does not exist.");
-            }
-        }
-
         public void DeleteUser(int id)
         {
             if (!db.GetCollection<User>("Users").Delete(id))
@@ -77,12 +83,10 @@ namespace AirBnbAPI.Data
             }
         }
 
-        //Admin shit
 
+        //Admin things
         public bool ValidatePassword(string password)
         {
-            // Implement your logic to validate the admin password here
-            // For simplicity, let's assume the password is hardcoded
             return password == "adminpassword";
         }
 

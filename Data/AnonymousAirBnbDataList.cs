@@ -9,6 +9,8 @@ namespace AirBnbAPI.Data
         List<Spot> spots = new List<Spot>();
         List<User> users = new List<User>();
 
+
+        //Booking things
         public void AddBooking(Booking booking)
         {
             bookings.Add(booking);
@@ -19,6 +21,18 @@ namespace AirBnbAPI.Data
             return bookings;
         }
 
+        public void DeleteBooking(int id)
+        {
+            var booking = bookings.FirstOrDefault(b => b.Id == id);
+            if (booking == null)
+            {
+                throw new KeyNotFoundException($"Booking with ID {id} does not exist.");
+            }
+            bookings.Remove(booking);
+        }
+
+
+        //Spot things
         public void AddSpot(Spot spot)
         {
             spots.Add(spot);
@@ -53,14 +67,16 @@ namespace AirBnbAPI.Data
             spots.Remove(spot);
         }
 
-        public void AddUser(User user)
-        {
-            users.Add(user);
-        }
 
-        public IEnumerable<User> GetUsers()
+        //User things
+        public void DeleteUser(int id)
         {
-            return users;
+            var user = users.FirstOrDefault(u => u.Id == id);
+            if (user == null)
+            {
+                throw new KeyNotFoundException($"User with ID {id} does not exist.");
+            }
+            users.Remove(user);
         }
 
         public void UpdateUser(User user)
@@ -72,32 +88,20 @@ namespace AirBnbAPI.Data
             }
         }
 
-        public void DeleteBooking(int id)
+        public void AddUser(User user)
         {
-            var booking = bookings.FirstOrDefault(b => b.Id == id);
-            if (booking == null)
-            {
-                throw new KeyNotFoundException($"Booking with ID {id} does not exist.");
-            }
-            bookings.Remove(booking);
+            users.Add(user);
         }
 
-        public void DeleteUser(int id)
+        public IEnumerable<User> GetUsers()
         {
-            var user = users.FirstOrDefault(u => u.Id == id);
-            if (user == null)
-            {
-                throw new KeyNotFoundException($"User with ID {id} does not exist.");
-            }
-            users.Remove(user);
+            return users;
         }
 
-        //Admin shit
 
+        //Admin things
         public bool ValidatePassword(string password)
         {
-            // Implement your logic to validate the admin password here
-            // For simplicity, let's assume the password is hardcoded
             return password == "adminpassword";
         }
 
